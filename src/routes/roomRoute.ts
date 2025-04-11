@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
-import { createProduct, getProduct, updateProduct, deleteProduct } from "../controllers/productController";
+import { createRoom, getRoom, updateRoom, deleteRoom } from "../controllers/roomController";
 import { authenticateJWT } from "../middlewares/tokenMiddleware";
 
 const router = express.Router();
@@ -8,10 +8,10 @@ const asyncHandler = (fn: Function) => (req: Request, res: Response, next: NextF
 	Promise.resolve(fn(req, res, next)).catch(next);
 };
 
-router.post("/", authenticateJWT, asyncHandler(createProduct));
-router.get("/", asyncHandler(getProduct));
+router.post("/", authenticateJWT, asyncHandler(createRoom));
+router.get("/", asyncHandler(getRoom));
 
-router.put("/:id", authenticateJWT, asyncHandler(updateProduct));
-router.delete("/:id", asyncHandler(deleteProduct));
+router.put("/", authenticateJWT, asyncHandler(updateRoom));
+router.delete("/delete", asyncHandler(deleteRoom));
 
 export default router;

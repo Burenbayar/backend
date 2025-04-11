@@ -5,7 +5,7 @@ import { generateToken } from "../utils/jwt";
 
 export const registerUserService = async (password: string, username: string) => {
   try {
-    const existingUser = await prisma.user.findUnique({
+    const existingUser = await prisma.admin.findUnique({
       where: { username}, 
     });
 
@@ -15,7 +15,7 @@ export const registerUserService = async (password: string, username: string) =>
 
     const encryptPassword = hashPassword(password);
 
-    return await prisma.user.create({
+    return await prisma.admin.create({
       data: { username, password: encryptPassword },
     });
   } catch (error) {
@@ -26,7 +26,7 @@ export const registerUserService = async (password: string, username: string) =>
 
 
 export const loginUserService = async (username: string, password: string) => {
-  const user = await prisma.user.findFirst({ where: { username } });
+  const user = await prisma.admin.findFirst({ where: { username } });
 
   console.log("User data:", user);
 
@@ -46,7 +46,7 @@ export const loginUserService = async (username: string, password: string) => {
 
 
 export const getUserProfileService = async (userId: string) => {
-  const user = await prisma.user.findUnique({
+  const user = await prisma.admin.findUnique({
     where: { id: userId },
   });
 

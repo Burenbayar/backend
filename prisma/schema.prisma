@@ -14,15 +14,38 @@ datasource db {
 }
 
 
-//biydaalt
-model User {
+
+model Admin {
   id       String  @id @default(uuid())
   username String  @unique
   password String
 }
 
-model Product {
-  id    String     @id @default(uuid())
-  name  String
+model Room {
+  id    Int     @id @default(autoincrement())
+  title  String
+  description String
   price Float
+  guest Int 
+  bed Int 
+  items Items[] 
 }
+
+model Items {
+  id Int  @id @default(autoincrement())
+  tv Boolean
+  phone Boolean
+  minibar Boolean
+  fridge Boolean
+  shower Boolean
+  microwave Boolean
+  hairdryer Boolean
+  wifi Boolean
+  service Boolean
+  tools Boolean
+  roomId Int 
+  room Room @relation(fields: [roomId], references: [id])
+
+}
+
+

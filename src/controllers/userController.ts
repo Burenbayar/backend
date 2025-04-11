@@ -5,7 +5,6 @@ export const registerUser = async (req: Request, res: Response) => {
   try {
     const { password, username } = req.body;
 
-    // Оролтын өгөгдөл шалгах
     if (!password || !username) {
       return res.status(400).json({ error: "Name and password are required" });
     }
@@ -27,7 +26,7 @@ export const loginUser = async (req: Request, res: Response) => {
     const token = await loginUserService(username, password);
     res.json({ token });
   } catch (error) {
-    res.status(401).json({ message: "nevtrehed aldaa garlaa", error });
+    res.status(401).json({ message: "User login failed", error });
   }
 };
 
