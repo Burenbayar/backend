@@ -10,8 +10,8 @@ CREATE TABLE "Admin" (
 -- CreateTable
 CREATE TABLE "Room" (
     "id" SERIAL NOT NULL,
-    "title" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
+    "title" JSONB NOT NULL,
+    "description" JSONB NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "guest" INTEGER NOT NULL,
     "bed" INTEGER NOT NULL,
@@ -32,6 +32,7 @@ CREATE TABLE "Items" (
     "wifi" BOOLEAN NOT NULL,
     "service" BOOLEAN NOT NULL,
     "tools" BOOLEAN NOT NULL,
+    "tea" BOOLEAN NOT NULL,
     "roomId" INTEGER NOT NULL,
 
     CONSTRAINT "Items_pkey" PRIMARY KEY ("id")
