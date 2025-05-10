@@ -13,40 +13,49 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Travel {
+  travel_id Int @id @default(autoincrement())
+  title     String
+  image     String
+  rank      Float
+  description String
+  price     Json
+  guide     Boolean
+  day       Int
+  startDate Json
+  Schedule  Schedule[]
+  Booking   Booking[] 
+}
 
-model Admin {
-  id       String @id @default(uuid())
-  username String @unique
+
+model Schedule {
+  schedule_id Int     @id @default(autoincrement())
+  d1          Json
+  d2          Json
+  d3          Json
+  d4          Json
+  d5          Json
+  d6          Json
+  d7          Json
+  travel_id   Int
+  travel      Travel  @relation(fields: [travel_id], references: [travel_id])
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
   password String
+  role     String @default("user")
 }
 
-model Room {
-  id          Int      @id @default(autoincrement())
-  image       String
-  title       Json
-  description Json
-  price       Float
-  guest       Int
-  bed         Int
-  items       Items[]
+model Booking {
+  booking_id  String     @id @default(uuid())
+  user_email  String
+  travel_id   Int
+  createdAt   DateTime @default(now())
+  travel      Travel   @relation(fields: [travel_id], references: [travel_id])
 }
 
-model Items {
-  id        Int   @id @default(autoincrement())
-  tv        Boolean
-  phone     Boolean
-  minibar   Boolean
-  fridge    Boolean
-  shower    Boolean
-  microwave Boolean
-  hairdryer Boolean
-  wifi      Boolean
-  service   Boolean
-  tools     Boolean
-  tea       Boolean
-  roomId    Int
-  room      Room  @relation(fields: [roomId], references: [id])
-}
 
 
 

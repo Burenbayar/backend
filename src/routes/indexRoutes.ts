@@ -1,11 +1,15 @@
 
 import express from "express";
-import adminRoutes from "./admin.routes";
-import roomRoutes from "./room.routes"; // Байгаа бол
+
+import travelRoutes from "./travel.routes"
+import userRoutes from "./user.routes"
+import bookingRoutes from "./booking.routes"
+
 
 const router = express.Router();
 
-router.use("/admins", adminRoutes);
-router.use("/rooms", roomRoutes); // Байгаа бол
+router.use("/users", userRoutes);
+router.use("/travels", travelRoutes);
+router.use("/bookings",bookingRoutes)
 
 export default router;
